@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDb = async () => {
   try {
-    const conn = await mongoose.connect("mongodb://localhost:27017/dbconnect", {
+    const conn = await mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/course-goals?authSource=admin`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

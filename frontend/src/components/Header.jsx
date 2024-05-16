@@ -89,7 +89,7 @@ const Header = () => {
                     toggleLogin();
                   }}
                 >
-                  <FontAwesomeIcon icon={faUser} /> Sing In
+                  <FontAwesomeIcon icon={faUser} /> Sign In
                 </Nav.Link>
               ) : (
                 <>
