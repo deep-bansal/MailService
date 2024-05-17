@@ -1,0 +1,11 @@
+- name: Run Docker Compose
+  hosts: localhost
+  tasks:
+    - name: Ensure Docker Compose is installed
+      pip:
+        name: docker-compose
+
+    - name: Run Docker Compose
+      docker_compose:
+        project_src: ./docker-compose.yaml
+        state: present

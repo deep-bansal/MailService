@@ -12,7 +12,7 @@ services:
     container_name: mongodb
 
   backend:
-    build: ./backend 
+    image: "deep04bansal/spe_backend" 
     ports:
       - '8000:8000'
 
@@ -30,7 +30,7 @@ services:
       - mongodb
    
   frontend:
-    build: ./frontend  
+    image: "deep04bansal/spe_frontend"  
     ports:
       - "3000:3000"
     volumes:
