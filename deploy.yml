@@ -3,10 +3,7 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Ensure Docker Compose is installed
-      pip:
-        name: docker-compose
-
+  
     - name: Run Docker Compose
       docker_compose:
         project_src: /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml
