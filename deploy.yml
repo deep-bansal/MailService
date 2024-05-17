@@ -1,5 +1,7 @@
 - name: Run Docker Compose
   hosts: localhost
+  remote_user: deepbansal
+  become: false
   tasks:
     - name: Ensure Docker Compose is installed
       pip:
