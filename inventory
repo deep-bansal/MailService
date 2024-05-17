@@ -1,1 +1,1 @@
-localhost ansible_user=deepbansal
+localhost ansible_user=deepbansal ansible_python_interpreter=/Users/deepbansal/anaconda3/bin/python docker_compose_command_path=/usr/local/bin/docker-compose
