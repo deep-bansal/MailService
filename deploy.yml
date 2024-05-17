@@ -4,7 +4,5 @@
   connection: local
   tasks:
   
-    - name: Run Docker Compose
-      docker_compose:
-        project_src: /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml
-        state: present
+   - name: Run Docker Compose
+      command: "/usr/local/bin/docker-compose -f /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml up -d"
