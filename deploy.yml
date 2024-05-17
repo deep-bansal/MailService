@@ -3,6 +3,5 @@
   hosts: localhost
   connection: local
   tasks:
-  
-   - name: Run Docker Compose
+    - name: Run Docker Compose
       command: "/usr/local/bin/docker-compose -f /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml up -d"
