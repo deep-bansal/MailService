@@ -1,7 +1,7 @@
+---
 - name: Run Docker Compose
   hosts: localhost
-  remote_user: deepbansal
-  become: false
+  connection: local
   tasks:
     - name: Ensure Docker Compose is installed
       pip:
@@ -9,5 +9,5 @@
 
     - name: Run Docker Compose
       docker_compose:
-        project_src: ./docker-compose.yaml
+        project_src: /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml
         state: present
