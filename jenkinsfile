@@ -77,7 +77,7 @@ pipeline{
         steps {
                 script {
                     // Define the command to execute the Ansible playbook
-                    def ansibleCommand = "ansible-playbook -i inventory deploy.yml -b"
+                    def ansibleCommand = "ansible-playbook -i inventory deploy.yml -b  --private-key ~/.ssh/id_rsa"
         
                     // Execute the command
                     sh ansibleCommand
