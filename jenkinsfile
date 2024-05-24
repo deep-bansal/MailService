@@ -62,7 +62,7 @@ pipeline{
         stage('Push Docker Image') {
             steps {
                 script{
-                     withCredentials([usernamePassword(credentialsId: 'DockerHubCred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                     withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     // Log in to Docker Hub
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                     // Push the Docker image to Docker Hub
@@ -77,7 +77,7 @@ pipeline{
         steps {
                 script {
                     // Define the command to execute the Ansible playbook
-                    def ansibleCommand = "ansible-playbook -i inventory deploy.yml"
+                    def ansibleCommand = "ansible-playbook -i inventory deploy.yml -b  --private-key ~/.ssh/id_rsa"
         
                     // Execute the command
                     sh ansibleCommand
