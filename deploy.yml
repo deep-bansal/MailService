@@ -64,33 +64,59 @@
         name: python3-pip
         state: present
       when: python_check.failed
-
+    
+    - name: Clone the MailService repository
+      git:
+        repo: https://github.com/deep-bansal/MailService.git
+        dest: /home/{{ ansible_user }}/MailService
+        version: main  # Change branch name if needed
+    
     - name: Apply backend Persistent Volume
       command: kubectl apply -f kubernetes/backend-pv.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply backend Persistent Volume Claim
       command: kubectl apply -f kubernetes/backend-pvc.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply MongoDB environment configuration
       command: kubectl apply -f kubernetes/mongo-env.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply MongoDB deployment
-      command: kubectl apply -f kubernetes/mongodb-deployment.yaml
+      command: kubectl apply -f kubernetes/mongo-deployment.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply MongoDB service
-      command: kubectl apply -f kubernetes/mongodb-service.yaml
+      command: kubectl apply -f kubernetes/mongo-service.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply backend environment configuration
       command: kubectl apply -f kubernetes/backend-env.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply backend deployment
       command: kubectl apply -f kubernetes/backend-deployment.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply backend service
       command: kubectl apply -f kubernetes/backend-service.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply frontend deployment
       command: kubectl apply -f kubernetes/frontend-deployment.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
 
     - name: Apply frontend service
       command: kubectl apply -f kubernetes/frontend-service.yaml
+      args:
+        chdir: /home/{{ ansible_user }}/MailService
