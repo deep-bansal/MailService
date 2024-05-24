@@ -31,3 +31,6 @@
 
     - name: Apply frontend service
       command: kubectl apply -f kubernetes/frontend-service.yaml
+
+    - name: Expose Frontend Service
+      command: minikube service front-service

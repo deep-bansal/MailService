@@ -21,7 +21,7 @@ export const userLogin = (email, password) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			"http://127.0.0.1:52793/api/users/login",
+			"/back/api/users/login",
 			{ email, password },
 			config
 		);
@@ -52,7 +52,7 @@ export const userCreate = (user) => async (dispatch) => {
 				"Content-Type": "application/json",
 			},
 		};
-		const { data } = await axios.post("http://127.0.0.1:52793/api/users", user, config);
+		const { data } = await axios.post("/back/api/users", user, config);
 
 		dispatch({ type: USER_CREATE_SUCCESS, payload: data });
 

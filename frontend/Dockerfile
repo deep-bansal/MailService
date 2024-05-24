@@ -12,15 +12,15 @@ COPY . .
 
 RUN npm run build
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 # # Production stage
-# FROM nginx:1.19-alpine
+FROM nginx:1.19-alpine
 
-# COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
-# EXPOSE 80
+EXPOSE 80
 
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
