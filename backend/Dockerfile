@@ -10,11 +10,6 @@ COPY . .
 
 EXPOSE 8000
 
-ENV NODE_ENV=development
-ENV JWT_SECRET=secret
-ENV MONGODB_USERNAME=admin
-ENV MONGODB_PASSWORD=secret
-
 CMD ["npm", "start"]
 
 # docker run --name backend -v $(pwd):/app -v /app/node_modules -v logs:/app/logs --rm --network spe-net -p 8000:8000 nodes-backend

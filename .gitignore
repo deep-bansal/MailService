@@ -12,3 +12,7 @@ node_modules/
 
 /env
 
+/kubernetes/mongo-env.yaml
+/kubernetes/backend-env.yaml
+
+

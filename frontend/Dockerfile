@@ -1,8 +1,10 @@
+# Build stage
 FROM node:14-alpine as builder
 
 WORKDIR /app
 
-COPY package.json .
+COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm install
 
@@ -10,12 +12,15 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:1.19-alpine
+CMD ["npm", "start"]
 
-COPY --from=builder /app/build /usr/share/nginx/html
+# # Production stage
+# FROM nginx:1.19-alpine
 
-COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
+# COPY --from=builder /app/build /usr/share/nginx/html
 
-EXPOSE 80
+# COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
-CMD [ "nginx", "-g", "daemon off;" ]
+# EXPOSE 80
+
+# CMD ["nginx", "-g", "daemon off;"]
