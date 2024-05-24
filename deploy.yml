@@ -1,12 +1,13 @@
 ---
 - name: Deploy application to Kubernetes
   hosts: all
+  become: yes
   tasks:
     - name: Check if kubectl is installed
       command: kubectl version --client
       register: kubectl_check
       ignore_errors: yes
-
+    
     - name: Install kubectl if not present
       apt:
         name: kubectl
