@@ -26,7 +26,7 @@ export const getMessages = (user_id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`http://localhost:8000/api/messages/${user_id}`, config);
+    const { data } = await axios.get(`/api/messages/${user_id}`, config);
 
     dispatch({ type: MESSAGES_USER_SUCCESS, payload: data });
   } catch (error) {
@@ -56,7 +56,7 @@ export const getMessage =
       };
 
       const { data } = await axios.get(
-        `http://localhost:8000/api/messages/${user_id}/${message_id}`,
+        `/api/messages/${user_id}/${message_id}`,
         config
       );
 
@@ -92,7 +92,7 @@ export const sendMessage =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post(`http://localhost:8000/api/messages/`, message, config);
+      const { data } = await axios.post(`/api/messages/`, message, config);
 
       dispatch({ type: MESSAGE_SEND_SUCCESS, payload: data });
     } catch (error) {
