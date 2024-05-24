@@ -1,7 +1,33 @@
 ---
-- name: Run Docker Compose
+- name: Deploy application to Kubernetes
   hosts: localhost
-  connection: local
   tasks:
-    - name: Run Docker Compose
-      command: "/usr/local/bin/docker-compose -f /Users/deepbansal/Desktop/InboxCOM/docker-compose.yaml up -d"
+    - name: Apply backend Persistent Volume
+      command: kubectl apply -f kubernetes/backend-pv.yaml
+
+    - name: Apply backend Persistent Volume Claim
+      command: kubectl apply -f kubernetes/backend-pvc.yaml
+
+    - name: Apply MongoDB environment configuration
+      command: kubectl apply -f kubernetes/mongo-env.yaml
+
+    - name: Apply MongoDB deployment
+      command: kubectl apply -f kubernetes/mongodb-deployment.yaml
+
+    - name: Apply MongoDB service
+      command: kubectl apply -f kubernetes/mongodb-service.yaml
+
+    - name: Apply backend environment configuration
+      command: kubectl apply -f kubernetes/backend-env.yaml
+
+    - name: Apply backend deployment
+      command: kubectl apply -f kubernetes/backend-deployment.yaml
+
+    - name: Apply backend service
+      command: kubectl apply -f kubernetes/backend-service.yaml
+
+    - name: Apply frontend deployment
+      command: kubectl apply -f kubernetes/frontend-deployment.yaml
+
+    - name: Apply frontend service
+      command: kubectl apply -f kubernetes/frontend-service.yaml
