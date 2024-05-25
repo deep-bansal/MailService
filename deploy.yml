@@ -77,70 +77,50 @@
       command: kubectl --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-pv.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply backend Persistent Volume Claim
-      command: kubectl apply -f kubernetes/backend-pvc.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-pvc.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply MongoDB environment configuration
-      command: kubectl apply -f kubernetes/mongo-env.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/mongo-env.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply MongoDB deployment
-      command: kubectl apply -f kubernetes/mongo-deployment.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/mongo-deployment.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply MongoDB service
-      command: kubectl apply -f kubernetes/mongo-service.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/mongo-service.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply backend environment configuration
-      command: kubectl apply -f kubernetes/backend-env.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-env.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply backend deployment
-      command: kubectl apply -f kubernetes/backend-deployment.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-deployment.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply backend service
-      command: kubectl apply -f kubernetes/backend-service.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-service.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply frontend deployment
-      command: kubectl apply -f kubernetes/frontend-deployment.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/frontend-deployment.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     - name: Apply frontend service
-      command: kubectl apply -f kubernetes/frontend-service.yaml --validate=false
+      command: kubectl  --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/frontend-service.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
-      environment:
-        KUBECONFIG: "/home/iiitb/.kube/config"
 
     # Other tasks to apply Kubernetes configurations for MongoDB, backend, frontend, etc.
