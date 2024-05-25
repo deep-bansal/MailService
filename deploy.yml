@@ -76,7 +76,7 @@
         version: main # Change branch name if needed
     
     - debug:
-    msg: "KUBECONFIG: {{ lookup('env', 'KUBECONFIG') }}"
+      msg: "KUBECONFIG: {{ lookup('env', 'KUBECONFIG') }}"
 
     - name: Apply backend Persistent Volume
       command: kubectl apply -f kubernetes/backend-pv.yaml
