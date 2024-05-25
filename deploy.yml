@@ -74,7 +74,7 @@
         version: main # Change branch name if needed
 
     - name: Apply backend Persistent Volume
-      command: kubectl apply -f kubernetes/backend-pv.yaml --validate=false
+      command: kubectl --kubeconfig=/home/iiitb/.kube/config apply -f kubernetes/backend-pv.yaml --validate=false
       args:
         chdir: /home/{{ ansible_user }}/MailService
       environment:
