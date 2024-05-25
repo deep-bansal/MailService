@@ -2,6 +2,8 @@
 - name: Deploy application to Kubernetes
   hosts: all
   become: yes
+  vars:
+    kubeconfig_path: "/home/iiitb/.kube/config"  # Path to Minikube kubeconfig
   tasks:
     - name: Check if kubectl is installed
       command: kubectl version --client
@@ -25,6 +27,8 @@
         dest: /usr/local/bin/minikube
         mode: "0755"
       when: minikube_check.failed
+
+    # Other tasks to check and install Node.js, npm, Python, etc.
 
     - name: Check if Node.js is installed
       command: node --version
@@ -75,48 +79,70 @@
       command: kubectl apply -f kubernetes/backend-pv.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply backend Persistent Volume Claim
       command: kubectl apply -f kubernetes/backend-pvc.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply MongoDB environment configuration
       command: kubectl apply -f kubernetes/mongo-env.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply MongoDB deployment
       command: kubectl apply -f kubernetes/mongo-deployment.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply MongoDB service
       command: kubectl apply -f kubernetes/mongo-service.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply backend environment configuration
       command: kubectl apply -f kubernetes/backend-env.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply backend deployment
       command: kubectl apply -f kubernetes/backend-deployment.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply backend service
       command: kubectl apply -f kubernetes/backend-service.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply frontend deployment
       command: kubectl apply -f kubernetes/frontend-deployment.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
 
     - name: Apply frontend service
       command: kubectl apply -f kubernetes/frontend-service.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
+
+    # Other tasks to apply Kubernetes configurations for MongoDB, backend, frontend, etc.
