@@ -120,6 +120,3 @@
       command: kubectl apply -f kubernetes/frontend-service.yaml
       args:
         chdir: /home/{{ ansible_user }}/MailService
-
-    - name: Get frontend service IP
-      command: minikube service front-service
