@@ -43,7 +43,7 @@ spec:
             claimName: backend-pvc
         - name: mongodb-logs
           hostPath:
-            path: /mongo_logs
+            path: /home/iiitb/mongo_logs
             type: DirectoryOrCreate
         - name: mongodb-config
           configMap:
