@@ -13,25 +13,38 @@ spec:
         app: mongodb
     spec:
       containers:
-      - name: mongodb
-        image: mongo:latest
-        ports:
+        - name: mongodb
+          image: mongo:latest
+          command: ["mongod", "--config", "/etc/mongod.conf"]
+          ports:
             - containerPort: 27017
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: mongo-env
-                key: username
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: mongo-env
-                key: password
-        volumeMounts:
-          - mountPath: /data/db
-            name: mongo-data
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-env
+                  key: username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-env
+                  key: password
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-data
+            - name: mongodb-logs
+              mountPath: /var/log/mongodb
+            - name: mongodb-config
+              mountPath: /etc/mongod.conf
+              subPath: mongod.conf
       volumes:
         - name: mongo-data
           persistentVolumeClaim:
             claimName: backend-pvc
+        - name: mongodb-logs
+          hostPath:
+            path: /Users/deepbansal/Desktop/mongo_logs
+            type: DirectoryOrCreate
+        - name: mongodb-config
+          configMap:
+            name: mongodb-config
